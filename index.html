@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <title>合成大猫猫</title>
+    <link type="text/css" rel="stylesheet" href="css/cat.css">
+    <script src="libs/p5.min.js"></script>
+    <script src="libs/decomp.min.js"></script>
+    <script src="libs/matter.min.js"></script>
+    <script src="js/cat_config.js"></script>
+    <script src="js/cat.js"></script>
+</head>
+<body></body>
+<script>
+    let Engine = Matter.Engine,
+        World = Matter.World,
+        Bodies = Matter.Bodies,
+        Events = Matter.Events,
+        Vertices = Matter.Vertices;
+    let engine, groundA, groundB, groundC, world;
+    let cats = {};
+    let nextCatLevel = 0;
+    let catKeyIndex = 0;
+    function setup() {
+        createCanvas(windowWidth / 1, windowHeight / 1);
+        engine = Engine.create();
+        world = engine.world;
+        Engine.run(engine);
+        let options = {
+            isStatic: true
+        }
+        groundA = Bodies.rectangle(width / 2, height +100 - 100, width, 100, options);
+        groundB = Bodies.rectangle(-25, height / 2, 50, height, options);
+        groundC = Bodies.rectangle(25 + width, height / 2, 50, height, options);
+        World.add(world, groundA);    //floor
+        World.add(world, groundB);    //left wall
+        World.add(world, groundC);    //right wall
+        Events.on(engine, 'collisionStart', function (event) {
+            for (let pair of event.pairs){
+                let [bodyA,bodyB] = [pair['bodyA'],pair['bodyB']];
+                if (bodyA.cat_level == bodyB.cat_level && bodyA.cat_level < 8){
+                    let [posA,posB] = [bodyA.position,bodyB.position];
+                    let [nx,ny] = [(posA.x + posB.x) / 2,(posA.y + posB.y) / 2];
+                    if (cats[bodyA.cat_key] && cats[bodyB.cat_key]) {
+                        removeCat(bodyA.cat_key);
+                        removeCat(bodyB.cat_key);
+                        addCat(bodyA.cat_level + 1, nx, ny);  //add a bigger cat
+                    }
+                }
+            }
+        });
+    }
+    function addCat(level, x, y) {
+        let cat_key = "cat_" + catKeyIndex;
+        let cat_level = level;
+        cats[cat_key] = new BigCat(x, y, cat_level, cat_key);
+        catKeyIndex++;
+    }
+    function mouseClicked() {
+        addCat(nextCatLevel,mouseX,50);
+        nextCatLevel = parseInt(Math.random() * 1000) % 3;
+    }
+    function removeCat(cat_key) {
+        cats[cat_key].removeFromWorld();
+        delete cats[cat_key];
+    }
+    function draw() {
+        background(243, 179, 67);
+        for (let key in cats) {
+            cats[key].show();
+        }
+    }
+    let catConfig,catSprite;
+    function preload() {
+        catConfig = loadJSON('json/cat.json');
+        catSprite = loadImage('images/cat.png');
+    }
+</script>

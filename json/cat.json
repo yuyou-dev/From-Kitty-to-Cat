@@ -1,0 +1,84 @@
+{"frames": {
+
+"c1.png":
+{
+	"frame": {"x":556,"y":398,"w":74,"h":84},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":74,"h":84},
+	"sourceSize": {"w":74,"h":84}
+},
+"c2.png":
+{
+	"frame": {"x":1237,"y":319,"w":106,"h":117},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":106,"h":117},
+	"sourceSize": {"w":106,"h":117}
+},
+"c3.png":
+{
+	"frame": {"x":1097,"y":319,"w":140,"h":150},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":140,"h":150},
+	"sourceSize": {"w":140,"h":150}
+},
+"c4.png":
+{
+	"frame": {"x":934,"y":319,"w":163,"h":164},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":163,"h":164},
+	"sourceSize": {"w":163,"h":164}
+},
+"c5.png":
+{
+	"frame": {"x":1343,"y":264,"w":200,"h":204},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":200,"h":204},
+	"sourceSize": {"w":200,"h":204}
+},
+"c6.png":
+{
+	"frame": {"x":1294,"y":0,"w":244,"h":264},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":244,"h":264},
+	"sourceSize": {"w":244,"h":264}
+},
+"c7.png":
+{
+	"frame": {"x":934,"y":0,"w":360,"h":319},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":360,"h":319},
+	"sourceSize": {"w":360,"h":319}
+},
+"c8.png":
+{
+	"frame": {"x":556,"y":0,"w":378,"h":398},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":378,"h":398},
+	"sourceSize": {"w":378,"h":398}
+},
+"c9.png":
+{
+	"frame": {"x":0,"y":0,"w":556,"h":502},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":556,"h":502},
+	"sourceSize": {"w":556,"h":502}
+}},
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "cat.png",
+	"format": "RGBA8888",
+	"size": {"w":1543,"h":502},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:bef3f01461fc4c209fa78f3d784accd6:35412554a49ab9ac3da1aa854b9ef500:0c90b9ae8b3d48d6500f6626a5b7af7b$"
+}
+}
