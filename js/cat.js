@@ -1,16 +1,7 @@
 var BigCat = function(x,y,cat_level,key){
     this.cat_level = cat_level;
     this.key = key;
-    this.points = [];
-    let _path = "";
-    let verticesRaw = cat_shapes[this.cat_level];
-    for(let p of verticesRaw){
-        let px = p[0] / 4 - 150;
-        let py = p[1] / 4 - 150;
-        _path += " " + px  + " " + py ;
-        this.points.push([px ,py]);
-    }
-    let _vertices = Vertices.fromPath(_path)
+    let _vertices = cat_shapes[this.cat_level].map((p) =>(Vector.create(p[0] / 4 - 150, p[1] / 4 - 150)));
     this.body = Bodies.fromVertices(x, y, _vertices,{
         cat_level:this.cat_level,
         cat_key:key,
