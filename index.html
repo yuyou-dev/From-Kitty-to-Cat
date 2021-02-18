@@ -39,7 +39,7 @@
         World.add(world, groundC);    //right wall
         Events.on(engine, 'collisionStart', function (event) {
             for (let pair of event.pairs){
-                let [bodyA,bodyB] = [pair['bodyA'],pair['bodyB']];
+                let {bodyA,bodyB} = pair;
                 if (bodyA.cat_level == bodyB.cat_level && bodyA.cat_level < 8){
                     let [posA,posB] = [bodyA.position,bodyB.position];
                     let [nx,ny] = [(posA.x + posB.x) / 2,(posA.y + posB.y) / 2];

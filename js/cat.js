@@ -12,8 +12,7 @@ var BigCat = function(x,y,cat_level,key){
     this.show = function(){
         let pos = this.body.position;
         let angle = this.body.angle;
-        let frameInfo = catConfig.frames['c' + (this.cat_level + 1) + ".png"].frame;
-        let [x,y,w,h] = [frameInfo.x,frameInfo.y,frameInfo.w,frameInfo.h];
+        let {x,y,w,h} = catConfig.frames['c' + (this.cat_level + 1) + ".png"].frame;
         push();
         translate(pos.x,pos.y);
         rotate(angle);
