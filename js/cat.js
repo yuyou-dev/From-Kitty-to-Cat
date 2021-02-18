@@ -1,7 +1,9 @@
 var BigCat = function(x,y,cat_level,key){
     this.cat_level = cat_level;
     this.key = key;
-    let _vertices = cat_shapes[this.cat_level].map((p) =>(Vector.create(p[0] / 4 - 150, p[1] / 4 - 150)));
+    let _vertices = cat_shapes[this.cat_level].map((p) =>{
+        return Vector.create(p[0] / 4 - 150, p[1] / 4 - 150)
+    });
     this.body = Bodies.fromVertices(x, y, _vertices,{
         cat_level:this.cat_level,
         cat_key:key,
