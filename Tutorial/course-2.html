@@ -1,0 +1,76 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <title>合成大猫猫</title>
+    <link type="text/css" rel="stylesheet" href="css/cat.css">
+    <script src="libs/p5.min.js"></script>
+    <script src="libs/matter.min.js"></script>
+    <script src="js/course-2.js"></script>
+</head>
+<body></body>
+<script>
+	let Engine = Matter.Engine,
+		World = Matter.World,
+		Bodies = Matter.Bodies,
+		Events = Matter.Events;
+	
+	let world,engine;
+    let ground;
+	let circles = {};
+	let circleIndex = 0;
+	let wallLeft,wallRight;
+    function setup() {
+        createCanvas(400, 400);
+		
+		engine = Engine.create();
+		world = engine.world;
+		
+		ground = Bodies.rectangle(width / 2,height,width,50,{isStatic:true});
+		wallLeft = Matter.Bodies.rectangle(0,height / 2,50,height,{isStatic:true});
+		wallRight = Matter.Bodies.rectangle(width,height / 2,50,height,{isStatic:true});
+		World.add(world,[ground,wallLeft,wallRight]);
+		Engine.run(engine);
+		Events.on(engine,"collisionStart",function(event){
+			for(let pair of event.pairs){
+				let {bodyA,bodyB} = pair;
+				if(bodyA.key && bodyB.key){
+					let levelA = bodyA.level;
+					let levelB = bodyB.level;
+					
+					if(levelA == levelB){
+						removeCircle(bodyA.key);
+						removeCircle(bodyB.key);
+						let nx = (bodyA.position.x + bodyB.position.x) / 2;
+						let ny = (bodyA.position.y + bodyB.position.y) / 2;
+						addCircle(nx,ny,levelA + 1);
+					}
+				}
+			}
+		});
+    }
+	function removeCircle(key){
+		circles[key].delete();
+		delete circles[key];
+	}
+	function addCircle(x,y,level){
+		let key = "key_" + circleIndex ++;
+		let _circle = new MyCircle(x,y,level,key);
+		circles[key] = _circle;
+	}
+    function mouseClicked() {
+		let level = parseInt(Math.random() * 3);
+		addCircle(mouseX,mouseY,level);
+    }
+    function draw() {
+        background(243, 179, 67);
+		fill(255);
+		rect(0,height - 25,width,50);
+		rect(-25,0,50,height);
+		rect(width - 25,0,50,height);
+		for(let _key in circles){
+			circles[_key].render();
+		}
+    }
+</script>
