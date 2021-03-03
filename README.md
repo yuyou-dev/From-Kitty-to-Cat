@@ -15,3 +15,6 @@ I also made a series of courses called “The Innovative Programming”. In this
 
 ### wiki:
   Project Wiki - [wiki](https://github.com/yuyou-dev/From-Kitty-to-Cat/wiki)
+
+### 中文课堂：
+  [中文课堂](https://github.com/yuyou-dev/From-Kitty-to-Cat/wiki/中文课堂)
