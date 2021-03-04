@@ -5,16 +5,42 @@
     <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
     <title>course 1:render with p5js</title>
     <script src="../libs/p5.min.js"></script>
+    <script src="../libs/matter.min.js"></script>
 </head>
 <body></body>
 <script>
+    let Engine = Matter.Engine,     
+        World = Matter.World,
+        Bodies = Matter.Bodies,
+        Vector = Matter.Vector,
+        Events = Matter.Events,
+        Vertices = Matter.Vertices;
+
+    let boxGroup = [];
+    let ground;
+    
     function setup() {
-        createCanvas(windowWidth / 1, windowHeight / 1);
+        createCanvas(400, 400);
+        engine = Engine.create();
+        Engine.run(engine);
+        world = engine.world;
+        ground = Bodies.rectangle(width / 2,height,width,100,{ isStatic: true });
+        World.add(world,ground);
+    }
+    function mouseClicked() {
+        newBox = Bodies.circle(mouseX, mouseY, 30);
+        boxGroup.push(newBox);
+        World.add(world,newBox);
     }
     function draw() {
         background(243, 179, 67);
-    }
-    function preload() {
-
+        for(let _box of boxGroup){
+            push()
+            translate(_box.position.x,_box.position.y)
+            rotate(_box.angle);
+            circle(0,0,60);
+            pop();
+        }
+        rect(0,height - 50,width,100)
     }
 </script>
