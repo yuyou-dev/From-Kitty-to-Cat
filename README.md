@@ -10,9 +10,6 @@ I also made a series of courses called “The Innovative Programming”. In this
 
 ### Course list:
 
-- From Kitty to Cat - (https://github.com/yuyou-dev/From-Kitty-to-Cat/) by YuYou
-- Polygon Edge Editor - (https://github.com/yuyou-dev/polygon-edge-editor) by YuYou
-
 ### wiki:
   Project Wiki - [wiki](https://github.com/yuyou-dev/From-Kitty-to-Cat/wiki)
 
