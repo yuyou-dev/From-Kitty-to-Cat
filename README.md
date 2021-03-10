@@ -8,8 +8,6 @@
 ## Remarks:
 I also made a series of courses called “The Innovative Programming”. In this course, I will show you the magic when programs are combined with interesting background in the creativity industry. The content of this course includes AI programms, games, dynamic visual effect and so on. 
 
-### Course list:
-
 ### wiki:
   Project Wiki - [wiki](https://github.com/yuyou-dev/From-Kitty-to-Cat/wiki)
 
