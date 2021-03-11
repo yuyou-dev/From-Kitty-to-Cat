@@ -6,6 +6,12 @@
 ![coordinate_system](https://user-images.githubusercontent.com/34769581/110732728-acf25a00-825f-11eb-98d0-1f9c90312c58.png)
 
 屏幕坐标系，通常是以左上角为坐标原点(0,0)
+![矫正坐标前_1](https://user-images.githubusercontent.com/34769581/110744484-b89c4b80-8274-11eb-9d2a-3ecfeb53d7cf.gif)
+
+![混合显示](https://user-images.githubusercontent.com/34769581/110744511-c356e080-8274-11eb-946b-12c7a0723759.gif)
+
+![矫正坐标](https://user-images.githubusercontent.com/34769581/110744519-c782fe00-8274-11eb-9693-787d0a3a6476.gif)
+
 
 ## 凹多边形
 对于突多边形的碰撞检测，只需遍历每个多边形的边，两两进行碰撞判断即可，运算复杂度较低。但对于凹多边形，碰撞检测的运算量和复杂度迅速提升，不宜直接进行运算，因此需要把一个凹多边形，拆分成若干个突多边形的组合，然后再运用突多边形的算法进行碰撞检测。
