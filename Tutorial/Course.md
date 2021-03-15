@@ -40,8 +40,8 @@ Mysql + Redis
 写入数据用`redis->zAdd(key,score,member)`
 
 ```php
-$redis->zAdd(key,score,member)
-
+$redis->zAdd($key,$score,$member)
+```
 
 
 
