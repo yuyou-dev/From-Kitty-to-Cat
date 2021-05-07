@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <title>合成大猫猫</title>
+    <link type="text/css" rel="stylesheet" href="css/cat.css">
+    <script src="libs/p5.min.js"></script>
+    <script src="libs/matter.min.js"></script>
+</head>
+<body></body>
+<script>
+    var Engine = Matter.Engine,
+        Runner = Matter.Runner,
+        Bodies = Matter.Bodies,
+        Composite = Matter.Composite;
+
+    var engine = Engine.create();
+    var ground = Bodies.rectangle(0, 400, 810, 60, { isStatic: true });
+
+    var boxes = [];
+
+    Composite.add(engine.world, [ground]);
+
+    var runner = Runner.create();
+    // run the engine
+    Runner.run(runner, engine);
+
+    function setup(){
+        createCanvas(400,400);
+        background(220);
+    }
+    function mouseClicked(){
+        var box = Bodies.rectangle(mouseX, mouseY, 50, 50);
+        Composite.add(engine.world, [box]);
+        boxes.push(box);
+    }
+    function draw(){
+        background(220);
+        for(let box of boxes){
+            let {x,y} = box.position;
+            let angle = box.angle;
+            push();
+            translate(x,y);
+            rotate(angle);
+            rect(-25,-25,50,50);
+            pop();
+        }
+    }
+</script>

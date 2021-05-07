@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <title>合成大猫猫</title>
+    <link type="text/css" rel="stylesheet" href="css/cat.css">
+    <script src="libs/p5.min.js"></script>
+    <script src="libs/matter.min.js"></script>
+    <script src='js/course-2.js'></script>
+</head>
+<body></body>
+<script>
+    var Engine = Matter.Engine,
+        Runner = Matter.Runner,
+        Bodies = Matter.Bodies,
+        Composite = Matter.Composite;
+
+    var engine = Engine.create();
+    var ground = Bodies.rectangle(0, 400, 810, 60, { isStatic: true });
+
+    var circles = {};
+    var total = 0;
+
+    Composite.add(engine.world, [ground]);
+
+    var runner = Runner.create();
+    Runner.run(runner, engine);
+
+    function setup(){
+        createCanvas(400,400);
+        background(220);
+
+        Matter.Events.on(engine, "collisionStart", function(res){
+            let {bodyA,bodyB} = res.pairs[0];
+            if(bodyA.key && bodyB.key){
+                let keyA = bodyA.key;
+                let keyB = bodyB.key;
+
+                let _cA = circles[keyA];
+                let _cB = circles[keyB];
+
+                let levelA = _cA.level;
+                let levelB = _cB.level;
+
+                if(levelA == levelB){
+                    let level = levelA + 1;
+                    let key = "c_" + total;
+                    let newX,newY;
+                    newX = (_cA.body.position.x + _cB.body.position.x) / 2.0;
+                    newY = (_cA.body.position.y + _cB.body.position.y) / 2.0;
+                    let _c = new MyCircle(key,newX,newY,level);
+                    circles[key] = _c;
+                    total ++;
+
+                    _cA.remove();
+                    _cB.remove();
+
+                    delete circles[keyA];
+                    delete circles[keyB];
+                }
+            }
+        })
+    }
+    function mouseClicked(){
+        let level = parseInt(Math.random() * 3);
+        let key = "c_" + total;
+        let _c = new MyCircle(key,mouseX,mouseY,level);
+        circles[key] = _c;
+        total ++;
+    }
+    function draw(){
+        background(220);
+        for(let key in circles){
+            let _c = circles[key];
+            _c.render();
+        }
+    }
+</script>

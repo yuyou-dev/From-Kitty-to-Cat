@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <title>合成大猫猫</title>
+    <link type="text/css" rel="stylesheet" href="css/cat.css">
+    <script src="libs/p5.min.js"></script>
+    <script src="libs/matter.min.js"></script>
+</head>
+<body></body>
+<script>
+    let engine,world;
+    let box1;
+    let boxGroup = [];
+    let ground;
+	function setup() {
+		createCanvas(400, 400);
+		engine = Matter.Engine.create();
+		Matter.Engine.run(engine);
+		world = engine.world;
+		ground = Matter.Bodies.rectangle(width / 2,height,width,100,{ isStatic: true });
+		Matter.World.add(world,ground);
+	}
+    function mouseClicked() {
+        newBox = Matter.Bodies.rectangle(mouseX, mouseY, 60,60);
+        boxGroup.push(newBox);
+        Matter.World.add(world,newBox);
+    }
+    function draw() {
+        background(243, 179, 67);
+        for(let _box of boxGroup){
+            push()
+            translate(_box.position.x,_box.position.y)
+            rotate(_box.angle);
+			
+			//绘制矫正坐标之前的图形
+			//fill(255,255,255,90)
+			//rect(0,0,60,60)
+			
+			//绘制矫正坐标之后的图形
+			fill(255,255,255)
+            rect(-30,-30,60,60);
+            pop();
+        }
+        rect(0,height - 50,width,100)
+    }
+</script>
